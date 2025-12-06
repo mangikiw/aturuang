@@ -1,0 +1,164 @@
+/* Import Font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global Reset & Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f3f4f6; /* Warna background luar HP */
+    color: #1f2937;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden; /* Mencegah scroll body browser, biar fokus di app container */
+}
+
+/* App Container (Bingkai HP) */
+#app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #fff;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+}
+
+/* --- UTILITIES --- */
+
+/* Custom Scrollbar (Disembunyikan biar bersih) */
+.scroll-area {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+.scroll-area::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Button Press Effect (Animasi pencet) */
+.btn-press {
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-press:active {
+    transform: scale(0.95);
+}
+.tap-effect:active {
+    background-color: #f9fafb;
+}
+
+/* Category Chip */
+.cat-chip {
+    transition: all 0.2s;
+    border: 1px solid #e5e7eb;
+}
+
+/* --- CAROUSEL (SLIDER DASHBOARD) --- */
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.carousel-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    padding: 0 0.5rem;
+}
+
+/* Dots Indicator */
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 99px;
+    background: #E5E7EB;
+    transition: all 0.3s;
+}
+.dot.active {
+    width: 16px;
+    background: #4F46E5;
+}
+
+/* --- MODAL SYSTEM --- */
+.modal-wrapper {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: flex-end; /* Default muncul dari bawah */
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-wrapper.open {
+    display: flex;
+}
+
+.modal-wrapper.active {
+    opacity: 1;
+}
+
+.modal-wrapper:not(.active) {
+    opacity: 0;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modal-wrapper.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Center Modal Variant (Buat Alert/Confirm) */
+.modal-wrapper.center-modal {
+    align-items: center;
+}
+.modal-wrapper.center-modal .modal-content {
+    border-radius: 1.5rem;
+    margin: 1.5rem;
+    transform: scale(0.9);
+}
+.modal-wrapper.active.center-modal .modal-content {
+    transform: scale(1);
+}
+
+/* --- AUTH SCREEN --- */
+.auth-screen {
+    position: absolute;
+    inset: 0;
+    background: white;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    transition: transform 0.4s ease;
+}
+
+.auth-hidden {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
